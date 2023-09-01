@@ -1,0 +1,26 @@
+<div class="large-container center-block">
+  <h1><%= @article.title %></h1>
+  <div>
+    <p>By <strong><%= @article.user.email %></strong></p>
+  </div>
+  <div>
+  	<%= @article.content %>
+  </div>
+  <div class="margin-top">
+    <p class="label">Tags</p>
+    <% @article.categories.each do |category| %>
+      <span class="badge badge-pill padding" style="background-color: <%= category.color %>;">
+        <%= link_to category.title, category, class:'text-white' %>
+      </span>
+    <% end %>
+  </div>
+
+  <div>
+    <%= button_to 'Delete', @article,
+    	method: :delete,
+      onclick: 'return confirm("Are you sure?")',
+      class: 'btn btn-danger' %>
+    <%= link_to 'Edit', edit_article_path(@article) %>
+    <%= link_to 'Back', articles_path %> <!-- `articles_path` regresa a a index -->
+  </div>
+</div>

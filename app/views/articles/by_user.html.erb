@@ -1,0 +1,5 @@
+<div class="large-container center-block">
+	<h1>Articles by <%= @user.email %></h1>
+	<!-- No hace falta recorrer con un ciclo each porque al ser puesto en el partial siguendo la convención de nombres, rails ya sabe lo que tiene que hacer-->
+	<%= render @user.articles %>	
+</div>

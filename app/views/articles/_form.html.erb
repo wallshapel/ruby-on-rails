@@ -1,0 +1,25 @@
+<%= form_with(model: @article) do |form| %>
+	<div class="field">
+		<%= form.label :title %>
+		<%= form.text_field :title %>
+	</div>
+	<div class="field">
+		<%= form.label :category_elements %>
+		<div class="row">
+			<% @categories.each do |category| %>
+				<label class="col-6 col-sm-4">
+					<%= form.check_box :category_elements, { multiple: true }, category.id, nil %> <!-- `{ multiple: true }` indica que sí se permite seleccionar varios checkbox a la vez. `category.id` será el id de la categoría. `nil` indica si por defecto el checkbox aparece chequeado o no -->
+					<%= category.title %>
+				</label>
+			<% end %>
+		</div>
+	</div>
+	<div class="field">
+		<%= form.label :content %>
+		<%= form.rich_text_area :content %>
+	</div>
+
+	<div>
+		<%= form.submit class: 'btn btn-success' %>
+	</div>
+<% end %>

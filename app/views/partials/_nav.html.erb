@@ -1,0 +1,23 @@
+<nav class="nav bg-light padding">
+	<li class="nav-item">
+		<%= link_to 'Home', root_path, class: 'nav-link' %> <!-- El sufijo `_path es necesario para los nombres de ruta -->
+	</li>
+	<li class="nav-item">
+		<%= link_to 'Articles', articles_path, class: 'nav-link' %>
+	</li>
+	<% if user_signed_in? %> <!-- `user_signed_in?` devuelve `true` si hay un usuario logueado, `false` en caso contrario -->
+		<li class="nav-item">
+			<%= link_to 'Write', new_article_path, class: 'nav-link' %>
+		</li>
+		<li class="nav-item">
+			<%= button_to 'Logout', destroy_user_session_path, method: :delete, class: 'nav-link' %> <!-- `destroy_user_session_path` la parte que dice `user`, varía de acuerdo a como se haya generado el modelo con la gema devise -->
+		</li>
+	<% else %>
+		<li class="nav-item">
+			<%= link_to 'Login', new_user_session_path, class: 'nav-link' %> <!-- `new_user_session_path` la parte que dice `user`, varía de acuerdo a como se haya generado el modelo con la gema devise -->
+		</li>	
+		<li class="nav-item">
+			<%= link_to 'Sign Up', new_user_registration_path, class: 'nav-link' %> <!-- `new_user_session_path` la parte que dice `user`, varía de acuerdo a como se haya generado el modelo con la gema devise -->
+		</li>		
+	<% end %>
+</nav>
